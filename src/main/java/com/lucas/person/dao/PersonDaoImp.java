@@ -13,14 +13,10 @@ public class PersonDaoImp implements PersonDao {
 
     private static List<Person> personList = new ArrayList<>();
 
-    /*public PersonDaoImp(){
-        personList.add(new Person(UUID.randomUUID(), "lucas"));
-    }*/
-
     @Override
-    public int insertPerson(UUID id, Person person) {
+    public String insertPerson(UUID id, Person person) {
         personList.add(new Person(id, person.getName()));
-        return 1;
+        return "success";
     }
 
     @Override
@@ -34,25 +30,26 @@ public class PersonDaoImp implements PersonDao {
     }
 
     @Override
-    public int deletePerson(UUID id) {
+    public String deletePerson(UUID id) {
         Optional<Person> personOptional = selectPersonById(id);
         if(!personOptional.isEmpty()){
             personList.remove(personOptional.get());
+            return "success";
         }
-        return 0;
+        return "fail";
     }
 
     @Override
-    public int updatePerson(UUID id, Person person) {
+    public String updatePerson(UUID id, Person person) {
         return selectPersonById(id)
                 .map(p -> {
                     int indexOfPersonToUpdate = personList.indexOf(p);
                     if (indexOfPersonToUpdate >= 0) {
                         personList.set(indexOfPersonToUpdate, new Person(id, person.getName()));
-                        return 1;
+                        return "success";
                     }
-                    return 0;
+                    return "fail";
                 })
-                .orElse(0);
+                .orElse(null);
     }
 }

@@ -16,7 +16,7 @@ public class PersonService {
     @Autowired
     private PersonDao personDao;
 
-    public int addPerson(Person person){
+    public String addPerson(Person person){
         return personDao.insertPerson(person);
     }
 
@@ -28,11 +28,11 @@ public class PersonService {
         return personDao.selectPersonById(uuid);
     }
 
-    public int deletePerson(UUID uuid){
+    public String deletePerson(UUID uuid){
         return personDao.deletePerson(uuid);
     }
 
-    public int updatePerson(UUID uuid, Person person){
+    public String updatePerson(UUID uuid, Person person){
         return personDao.updatePerson(uuid, person);
     }
 

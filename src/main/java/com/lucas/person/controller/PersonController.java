@@ -18,8 +18,8 @@ public class PersonController {
 
     @ApiOperation(value="create user", notes="")
     @PostMapping
-    public void addPerson(@RequestBody Person person){
-        personService.addPerson(person);
+    public String addPerson(@RequestBody Person person){
+        return personService.addPerson(person);
     }
 
     @ApiOperation(value="get all users", notes="")
@@ -36,13 +36,13 @@ public class PersonController {
 
     @ApiOperation(value="delete user", notes="")
     @DeleteMapping("/{id}")
-    public void deletePerson(@PathVariable UUID id){
-        personService.deletePerson(id);
+    public String deletePerson(@PathVariable UUID id){
+        return personService.deletePerson(id);
     }
 
     @ApiOperation(value="update user", notes="")
     @PutMapping("/{id}")
-    public void updatePerson(@PathVariable UUID id, @RequestBody Person person){
-        personService.updatePerson(id, person);
+    public String updatePerson(@PathVariable UUID id, @RequestBody Person person){
+        return personService.updatePerson(id, person);
     }
 }
